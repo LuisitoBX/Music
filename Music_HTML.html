@@ -1,0 +1,558 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <title></title>
+  <meta name="Generator" content="Cocoa HTML Writer">
+  <meta name="CocoaVersion" content="2566">
+  <style type="text/css">
+    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica}
+    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica; min-height: 14.0px}
+  </style>
+</head>
+<body>
+<p class="p1">&lt;!DOCTYPE html&gt;</p>
+<p class="p1">&lt;html lang="en"&gt;</p>
+<p class="p1">&lt;head&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;meta charset="UTF-8" /&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"/&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;title&gt;Music &amp; Lyric Video Player (iOS-Friendly)&lt;/title&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;style&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>/* ========== RESET / BASE STYLES ========== */</p>
+<p class="p1"><span class="Apple-converted-space">    </span>* {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>box-sizing: border-box;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>body {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>margin: 0;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>font-family: Arial, sans-serif;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>background: #000; /* Dark Theme */</p>
+<p class="p1"><span class="Apple-converted-space">      </span>color: #fff;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>/* ========== PAGE TITLE ========== */</p>
+<p class="p1"><span class="Apple-converted-space">    </span>h1 {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>text-align: center;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>margin: 20px 0;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>font-size: 1.6rem;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>font-weight: normal;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>/* ========== AUDIO PLAYER SECTION ========== */</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.audio-player {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>width: 90%;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>max-width: 600px;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>margin: 0 auto 20px auto;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>background: #1a1a1a;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>border-radius: 8px;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>box-shadow: 0 2px 5px rgba(255,255,255,0.1);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>padding: 16px;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>display: flex;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>flex-direction: column;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>align-items: center;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.audio-player img {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>width: 200px;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>height: 200px;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>object-fit: cover;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>margin-bottom: 16px;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>border: 2px solid #fff;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>border-radius: 4px;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>background: #333;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.audio-player .controls {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>display: flex;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>gap: 10px;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>margin-bottom: 16px;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.audio-player .controls button {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>padding: 8px 12px;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>background: #444;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>color: #fff;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>border: none;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>border-radius: 4px;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>cursor: pointer;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>font-size: 1.2rem; /* Larger for symbols */</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.audio-player .controls button:hover {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>background: #555;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>.progress-container {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>width: 100%;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>display: flex;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>align-items: center;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>gap: 8px;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>#progressBar {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>flex: 1;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>cursor: pointer;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>#currentTime,</p>
+<p class="p1"><span class="Apple-converted-space">    </span>#duration {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>font-family: monospace;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>font-size: 0.9rem;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>min-width: 40px;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>text-align: center;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>/* ========== SONG LIST (Dark + Scrollable) ========== */</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.song-list {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>width: 90%;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>max-width: 600px;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>margin: 0 auto 20px auto;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>background: #1a1a1a;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>border-radius: 8px;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>box-shadow: 0 2px 5px rgba(255,255,255,0.1);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>max-height: 250px; /* fixed height for scrollable list */</p>
+<p class="p1"><span class="Apple-converted-space">      </span>overflow-y: auto;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.song-item {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>display: flex;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>align-items: center;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>padding: 10px;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>border-bottom: 1px solid #333;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>cursor: pointer;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>color: #fff;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>position: relative;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.song-item:last-child {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>border-bottom: none;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.song-item:hover {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>background: #333;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.song-item img {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>width: 60px;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>height: 60px;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>object-fit: cover;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>border-radius: 4px;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>border: 1px solid #444;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>flex-shrink: 0;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>margin-right: 10px;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>background: #333;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.song-info {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>display: flex;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>flex-direction: column;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>flex: 1;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.song-info h3 {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>margin: 0;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>font-size: 1rem;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>font-weight: normal;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>/* Lyric Video Button */</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.lyric-btn {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>background: #444;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>color: #fff;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>border: none;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>border-radius: 4px;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>padding: 6px 10px;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>cursor: pointer;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>font-size: 0.8rem;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>margin-left: auto; /* push to right side */</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.lyric-btn:hover {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>background: #555;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>/* ========== VIDEO PLAYER SECTION ========== */</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.video-player {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>width: 90%;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>max-width: 600px;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>margin: 0 auto 40px auto;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>border-radius: 8px;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>overflow: hidden;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>background: #1a1a1a;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>box-shadow: 0 2px 5px rgba(255,255,255,0.1);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>padding: 16px;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.video-player video {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>width: 100%;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>border-radius: 8px;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>outline: none;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>background: #000;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;/style&gt;</p>
+<p class="p1">&lt;/head&gt;</p>
+<p class="p2"><br></p>
+<p class="p1">&lt;body&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;h1&gt;Music &amp; Lyric Video Player&lt;/h1&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;!-- ========== AUDIO PLAYER SECTION ========== --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;div class="audio-player"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;!-- Cover Art --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;img id="currentCover" src="https://via.placeholder.com/200/333333/ffffff?text=No+Cover" alt="Current Track Cover" /&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;!-- Playback Controls --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="controls"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;!-- Using Unicode symbols for each button --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;button id="prevBtn" aria-label="Previous Track"&gt;⏮&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;button id="playPauseBtn" aria-label="Play or Pause"&gt;▶&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;button id="nextBtn" aria-label="Next Track"&gt;⏭&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;button id="shuffleBtn" aria-label="Shuffle"&gt;🔀 Off&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;!-- Progress Bar &amp; Times --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="progress-container"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;span id="currentTime"&gt;0:00&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;input type="range" id="progressBar" min="0" max="100" value="0"/&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;span id="duration"&gt;0:00&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;!-- The HTML5 Audio Element for iOS Safari:</p>
+<p class="p1"><span class="Apple-converted-space">         </span>- preload="metadata" to load minimal data</p>
+<p class="p1"><span class="Apple-converted-space">         </span>- playsinline so iOS doesn't do anything unexpected (though often used for video) --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;audio id="audioElement" preload="metadata" playsinline&gt;&lt;/audio&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;!-- ========== SONG LIST (Dynamically Built) ========== --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;div class="song-list" id="songList"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;!-- We dynamically add .song-item elements with JS --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;!-- ========== VIDEO PLAYER SECTION ========== --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;div class="video-player" id="videoSection"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;!-- For iOS inline playback, we already have playsinline --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;video id="videoElement" controls playsinline preload="metadata"&gt;&lt;/video&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;script&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>/*****************************************************</p>
+<p class="p1"><span class="Apple-converted-space">     </span>* <span class="Apple-converted-space">  </span>DATA STRUCTURE - OUR 11 TRACKS</p>
+<p class="p1"><span class="Apple-converted-space">     </span>*****************************************************/</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const tracks = [</p>
+<p class="p1"><span class="Apple-converted-space">      </span>{</p>
+<p class="p1"><span class="Apple-converted-space">        </span>title: "Audacity",</p>
+<p class="p1"><span class="Apple-converted-space">        </span>cover: "https://www.dropbox.com/scl/fi/z2gfevgece7p4ezb56uzz/Audacity.png?dl=1",</p>
+<p class="p1"><span class="Apple-converted-space">        </span>audio: "https://www.dropbox.com/scl/fi/ulcf1odkyd5ztfmcqdy24/Audacity-Reference.mp3?dl=1",</p>
+<p class="p1"><span class="Apple-converted-space">        </span>video: "https://www.dropbox.com/scl/fi/qy777h7aeg6l6c3p8z2tw/Audacity.mp4?dl=1",</p>
+<p class="p1"><span class="Apple-converted-space">      </span>},</p>
+<p class="p1"><span class="Apple-converted-space">      </span>{</p>
+<p class="p1"><span class="Apple-converted-space">        </span>title: "O.M.W",</p>
+<p class="p1"><span class="Apple-converted-space">        </span>cover: "https://www.dropbox.com/scl/fi/lq6pbvo55wu9buxlxlfei/OMW.png?dl=1",</p>
+<p class="p1"><span class="Apple-converted-space">        </span>audio: "https://www.dropbox.com/scl/fi/fs7w2zdboxklyegjvlng2/O.M.W-Reference.mp3?dl=1",</p>
+<p class="p1"><span class="Apple-converted-space">        </span>video: "https://www.dropbox.com/scl/fi/8gsr2hbvkhptmpfop6kqv/O.M.W.mp4?dl=1",</p>
+<p class="p1"><span class="Apple-converted-space">      </span>},</p>
+<p class="p1"><span class="Apple-converted-space">      </span>{</p>
+<p class="p1"><span class="Apple-converted-space">        </span>title: "Nuisance",</p>
+<p class="p1"><span class="Apple-converted-space">        </span>cover: "https://www.dropbox.com/scl/fi/7e7wm4gwqqrqo4qrun3ie/Nuisance.png?dl=1",</p>
+<p class="p1"><span class="Apple-converted-space">        </span>audio: "https://www.dropbox.com/scl/fi/pmvhavjpvkpuibvh2t23e/Nuisance-Reference.mp3?dl=1",</p>
+<p class="p1"><span class="Apple-converted-space">        </span>video: "https://www.dropbox.com/scl/fi/3m77qo0lie5v0jpzo31q9/Nuisance.mp4?dl=1",</p>
+<p class="p1"><span class="Apple-converted-space">      </span>},</p>
+<p class="p1"><span class="Apple-converted-space">      </span>{</p>
+<p class="p1"><span class="Apple-converted-space">        </span>title: "Go Off",</p>
+<p class="p1"><span class="Apple-converted-space">        </span>cover: "https://www.dropbox.com/scl/fi/pn8bdhqmjurpd6selg47o/Go-Off.png?dl=1",</p>
+<p class="p1"><span class="Apple-converted-space">        </span>audio: "https://www.dropbox.com/scl/fi/r5tmq0au65b3wm7z9jdci/Go-Off-Rough.mp3?dl=1",</p>
+<p class="p1"><span class="Apple-converted-space">        </span>video: "https://www.dropbox.com/scl/fi/akbbncni18nfp4y6ooune/Go-Off.mp4?dl=1",</p>
+<p class="p1"><span class="Apple-converted-space">      </span>},</p>
+<p class="p1"><span class="Apple-converted-space">      </span>{</p>
+<p class="p1"><span class="Apple-converted-space">        </span>title: "Stranger",</p>
+<p class="p1"><span class="Apple-converted-space">        </span>cover: "",</p>
+<p class="p1"><span class="Apple-converted-space">        </span>audio: "https://www.dropbox.com/scl/fi/5gg6p01yma5f5574pu6l0/Stranger-Reference.mp3?dl=1",</p>
+<p class="p1"><span class="Apple-converted-space">        </span>video: "",</p>
+<p class="p1"><span class="Apple-converted-space">      </span>},</p>
+<p class="p1"><span class="Apple-converted-space">      </span>{</p>
+<p class="p1"><span class="Apple-converted-space">        </span>title: "Don't Be Gone",</p>
+<p class="p1"><span class="Apple-converted-space">        </span>cover: "",</p>
+<p class="p1"><span class="Apple-converted-space">        </span>audio: "https://www.dropbox.com/scl/fi/q95eydjog4jrzwrws7vsq/Don-t-Be-Gone-Reference.mp3?dl=1",</p>
+<p class="p1"><span class="Apple-converted-space">        </span>video: "",</p>
+<p class="p1"><span class="Apple-converted-space">      </span>},</p>
+<p class="p1"><span class="Apple-converted-space">      </span>{</p>
+<p class="p1"><span class="Apple-converted-space">        </span>title: "July",</p>
+<p class="p1"><span class="Apple-converted-space">        </span>cover: "",</p>
+<p class="p1"><span class="Apple-converted-space">        </span>audio: "https://www.dropbox.com/scl/fi/5hc2yd8rzq03v357y7d5e/July-Reference.mp3?dl=1",</p>
+<p class="p1"><span class="Apple-converted-space">        </span>video: "",</p>
+<p class="p1"><span class="Apple-converted-space">      </span>},</p>
+<p class="p1"><span class="Apple-converted-space">      </span>{</p>
+<p class="p1"><span class="Apple-converted-space">        </span>title: "Yin &amp; Yang",</p>
+<p class="p1"><span class="Apple-converted-space">        </span>cover: "https://www.dropbox.com/scl/fi/468hugyxr9e7af8c4ph7j/Yin-Yang.png?dl=1",</p>
+<p class="p1"><span class="Apple-converted-space">        </span>audio: "https://www.dropbox.com/scl/fi/gpekeai1vzp53engrai5c/Yin-Yang-Reference.mp3?dl=1",</p>
+<p class="p1"><span class="Apple-converted-space">        </span>video: "https://www.dropbox.com/scl/fi/i1y2d1wiyan2xm725w6h7/Yin-Yang.mp4?dl=1",</p>
+<p class="p1"><span class="Apple-converted-space">      </span>},</p>
+<p class="p1"><span class="Apple-converted-space">      </span>{</p>
+<p class="p1"><span class="Apple-converted-space">        </span>title: "New Body",</p>
+<p class="p1"><span class="Apple-converted-space">        </span>cover: "",</p>
+<p class="p1"><span class="Apple-converted-space">        </span>audio: "https://www.dropbox.com/scl/fi/lhs0n6ticmt30wbx7vbbq/New-Body-Reference.mp3?dl=1",</p>
+<p class="p1"><span class="Apple-converted-space">        </span>video: "",</p>
+<p class="p1"><span class="Apple-converted-space">      </span>},</p>
+<p class="p1"><span class="Apple-converted-space">      </span>{</p>
+<p class="p1"><span class="Apple-converted-space">        </span>title: "Our Last Goodbye",</p>
+<p class="p1"><span class="Apple-converted-space">        </span>cover: "https://www.dropbox.com/scl/fi/ec7t5qewia0c6yvyftjte/Our-Last-Goodbye.png?dl=1",</p>
+<p class="p1"><span class="Apple-converted-space">        </span>audio: "https://www.dropbox.com/scl/fi/283o1rpm08lvu1rbf3ivr/Our-Last-Goodbye-LuisitoBX.m4a?dl=1",</p>
+<p class="p1"><span class="Apple-converted-space">        </span>video: "https://www.dropbox.com/scl/fi/88g4p1588qsabx9sdemzi/Our-Last-Goodbye-LuisitoBX-V3-4K.mp4?dl=1",</p>
+<p class="p1"><span class="Apple-converted-space">      </span>},</p>
+<p class="p1"><span class="Apple-converted-space">      </span>{</p>
+<p class="p1"><span class="Apple-converted-space">        </span>title: "Biggest Mistake",</p>
+<p class="p1"><span class="Apple-converted-space">        </span>cover: "",</p>
+<p class="p1"><span class="Apple-converted-space">        </span>audio: "https://www.dropbox.com/scl/fi/0wxhn5hvj51ibvfoopv4v/Biggest-Mistake-Rough.mp3?dl=1",</p>
+<p class="p1"><span class="Apple-converted-space">        </span>video: "",</p>
+<p class="p1"><span class="Apple-converted-space">      </span>},</p>
+<p class="p1"><span class="Apple-converted-space">    </span>];</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>/*****************************************************</p>
+<p class="p1"><span class="Apple-converted-space">     </span>* <span class="Apple-converted-space">  </span>GLOBAL STATE</p>
+<p class="p1"><span class="Apple-converted-space">     </span>*****************************************************/</p>
+<p class="p1"><span class="Apple-converted-space">    </span>let currentIndex = 0;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>let isPlaying = false; <span class="Apple-converted-space">  </span>// track if audio is currently playing</p>
+<p class="p1"><span class="Apple-converted-space">    </span>let isShuffle = false;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>let hasUserInteracted = false; // For iOS Safari user-gesture policies</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>let audioElement;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>let videoElement;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>let progressBar;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>let currentCover;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>let currentTimeDisplay;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>let durationDisplay;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>let playPauseBtn;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>let shuffleBtn;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>/*****************************************************</p>
+<p class="p1"><span class="Apple-converted-space">     </span>* <span class="Apple-converted-space">  </span>UTILITY FUNCTIONS</p>
+<p class="p1"><span class="Apple-converted-space">     </span>*****************************************************/</p>
+<p class="p1"><span class="Apple-converted-space">    </span>function formatTime(seconds) {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const mins = Math.floor(seconds / 60);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const secs = Math.floor(seconds % 60);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>return `${mins}:${secs &lt; 10 ? "0" : ""}${secs}`;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>function scrollToVideo() {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const videoSection = document.getElementById("videoSection");</p>
+<p class="p1"><span class="Apple-converted-space">      </span>videoSection.scrollIntoView({ behavior: "smooth" });</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>/*****************************************************</p>
+<p class="p1"><span class="Apple-converted-space">     </span>* <span class="Apple-converted-space">  </span>AUDIO PLAYER LOGIC</p>
+<p class="p1"><span class="Apple-converted-space">     </span>*****************************************************/</p>
+<p class="p1"><span class="Apple-converted-space">    </span>function loadTrack(index) {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>currentIndex = index;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const track = tracks[currentIndex];</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">      </span>// Update audio source &amp; cover art</p>
+<p class="p1"><span class="Apple-converted-space">      </span>audioElement.src = track.audio;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>if (track.cover) {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>currentCover.src = track.cover;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>} else {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>currentCover.src = "https://via.placeholder.com/200/333333/ffffff?text=No+Cover";</p>
+<p class="p1"><span class="Apple-converted-space">      </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">      </span>// Reset 'isPlaying' to false until user triggers play</p>
+<p class="p1"><span class="Apple-converted-space">      </span>isPlaying = false;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>playPauseBtn.textContent = "▶"; // show 'Play' symbol</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">      </span>// Update duration after metadata loads</p>
+<p class="p1"><span class="Apple-converted-space">      </span>audioElement.addEventListener("loadedmetadata", () =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>durationDisplay.textContent = formatTime(audioElement.duration);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>}, { once: true });</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>// When user manually picks Next</p>
+<p class="p1"><span class="Apple-converted-space">    </span>function nextTrack() {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>if (isShuffle) {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>let randomIndex;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>do {</p>
+<p class="p1"><span class="Apple-converted-space">          </span>randomIndex = Math.floor(Math.random() * tracks.length);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>} while (randomIndex === currentIndex);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>currentIndex = randomIndex;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>} else {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>currentIndex++;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>if (currentIndex &gt;= tracks.length) {</p>
+<p class="p1"><span class="Apple-converted-space">          </span>currentIndex = 0;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">      </span>}</p>
+<p class="p1"><span class="Apple-converted-space">      </span>loadTrack(currentIndex);</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">      </span>// Attempt autoplay if user has interacted</p>
+<p class="p1"><span class="Apple-converted-space">      </span>audioElement.load();</p>
+<p class="p1"><span class="Apple-converted-space">      </span>if (hasUserInteracted) {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>audioElement.play().catch(err =&gt; console.log("iOS user gesture required:", err));</p>
+<p class="p1"><span class="Apple-converted-space">      </span>}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>// When user manually picks Prev</p>
+<p class="p1"><span class="Apple-converted-space">    </span>function prevTrack() {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>if (isShuffle) {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>let randomIndex;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>do {</p>
+<p class="p1"><span class="Apple-converted-space">          </span>randomIndex = Math.floor(Math.random() * tracks.length);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>} while (randomIndex === currentIndex);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>currentIndex = randomIndex;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>} else {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>currentIndex--;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>if (currentIndex &lt; 0) {</p>
+<p class="p1"><span class="Apple-converted-space">          </span>currentIndex = tracks.length - 1;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">      </span>}</p>
+<p class="p1"><span class="Apple-converted-space">      </span>loadTrack(currentIndex);</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">      </span>// Attempt autoplay if user has interacted</p>
+<p class="p1"><span class="Apple-converted-space">      </span>audioElement.load();</p>
+<p class="p1"><span class="Apple-converted-space">      </span>if (hasUserInteracted) {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>audioElement.play().catch(err =&gt; console.log("iOS user gesture required:", err));</p>
+<p class="p1"><span class="Apple-converted-space">      </span>}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>function toggleShuffle() {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>isShuffle = !isShuffle;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>shuffleBtn.textContent = `🔀 ${isShuffle ? "On" : "Off"}`;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>// Toggle Play/Pause from the main button</p>
+<p class="p1"><span class="Apple-converted-space">    </span>function togglePlayPause() {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>if (!hasUserInteracted) {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>hasUserInteracted = true; // The user tapped the play/pause button</p>
+<p class="p1"><span class="Apple-converted-space">      </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">      </span>if (isPlaying) {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>audioElement.pause();</p>
+<p class="p1"><span class="Apple-converted-space">      </span>} else {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>audioElement.play().catch(err =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">          </span>console.log("Playback blocked, iOS user gesture required:", err);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>});</p>
+<p class="p1"><span class="Apple-converted-space">      </span>}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>function updateProgress() {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>if (!isNaN(audioElement.duration)) {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const progress = (audioElement.currentTime / audioElement.duration) * 100;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>progressBar.value = progress;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>currentTimeDisplay.textContent = formatTime(audioElement.currentTime);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>function seekAudio() {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const seekTime = (progressBar.value / 100) * audioElement.duration;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>audioElement.currentTime = seekTime;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>/*****************************************************</p>
+<p class="p1"><span class="Apple-converted-space">     </span>* <span class="Apple-converted-space">  </span>LYRIC VIDEO LOGIC</p>
+<p class="p1"><span class="Apple-converted-space">     </span>*****************************************************/</p>
+<p class="p1"><span class="Apple-converted-space">    </span>function playLyricVideo(videoUrl) {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>if (!videoUrl) return;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>// The user clicked the “Lyric Video” button, so it’s a valid gesture</p>
+<p class="p1"><span class="Apple-converted-space">      </span>hasUserInteracted = true;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">      </span>videoElement.src = videoUrl;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>videoElement.play().catch(err =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>console.log("iOS gesture required for video playback:", err);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>});</p>
+<p class="p1"><span class="Apple-converted-space">      </span>scrollToVideo();</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>/*****************************************************</p>
+<p class="p1"><span class="Apple-converted-space">     </span>* <span class="Apple-converted-space">  </span>BUILD SONG LIST</p>
+<p class="p1"><span class="Apple-converted-space">     </span>*****************************************************/</p>
+<p class="p1"><span class="Apple-converted-space">    </span>function buildSongList() {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const songListDiv = document.getElementById("songList");</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">      </span>tracks.forEach((track, index) =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const itemDiv = document.createElement("div");</p>
+<p class="p1"><span class="Apple-converted-space">        </span>itemDiv.className = "song-item";</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>// Thumbnail if there's cover art, else placeholder</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const thumbnail = document.createElement("img");</p>
+<p class="p1"><span class="Apple-converted-space">        </span>thumbnail.src = track.cover</p>
+<p class="p1"><span class="Apple-converted-space">          </span>? track.cover</p>
+<p class="p1"><span class="Apple-converted-space">          </span>: "https://via.placeholder.com/60/333333/ffffff?text=No+Cover";</p>
+<p class="p1"><span class="Apple-converted-space">        </span>itemDiv.appendChild(thumbnail);</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>// Song info</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const infoDiv = document.createElement("div");</p>
+<p class="p1"><span class="Apple-converted-space">        </span>infoDiv.className = "song-info";</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const titleEl = document.createElement("h3");</p>
+<p class="p1"><span class="Apple-converted-space">        </span>titleEl.textContent = track.title;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>infoDiv.appendChild(titleEl);</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>itemDiv.appendChild(infoDiv);</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>// If the song has a lyric video, add a "Lyric Video" button</p>
+<p class="p1"><span class="Apple-converted-space">        </span>if (track.video) {</p>
+<p class="p1"><span class="Apple-converted-space">          </span>const lyricBtn = document.createElement("button");</p>
+<p class="p1"><span class="Apple-converted-space">          </span>lyricBtn.textContent = "Lyric Video";</p>
+<p class="p1"><span class="Apple-converted-space">          </span>lyricBtn.className = "lyric-btn";</p>
+<p class="p1"><span class="Apple-converted-space">          </span>lyricBtn.addEventListener("click", (event) =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>// Prevent the itemDiv click from also firing</p>
+<p class="p1"><span class="Apple-converted-space">            </span>event.stopPropagation();</p>
+<p class="p1"><span class="Apple-converted-space">            </span>playLyricVideo(track.video);</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>// Pause audio if playing</p>
+<p class="p1"><span class="Apple-converted-space">            </span>audioElement.pause();</p>
+<p class="p1"><span class="Apple-converted-space">          </span>});</p>
+<p class="p1"><span class="Apple-converted-space">          </span>itemDiv.appendChild(lyricBtn);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>// Entire .song-item is clickable -&gt; loadTrack(index) + attempt to play audio</p>
+<p class="p1"><span class="Apple-converted-space">        </span>itemDiv.addEventListener("click", () =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">          </span>// The user tapped a song in the list, so we have a valid gesture</p>
+<p class="p1"><span class="Apple-converted-space">          </span>hasUserInteracted = true;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">          </span>loadTrack(index);</p>
+<p class="p1"><span class="Apple-converted-space">          </span>audioElement.load();</p>
+<p class="p1"><span class="Apple-converted-space">          </span>audioElement.play().catch(err =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>console.log("Playback blocked, iOS user gesture required:", err);</p>
+<p class="p1"><span class="Apple-converted-space">          </span>});</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">          </span>// Stop any playing video</p>
+<p class="p1"><span class="Apple-converted-space">          </span>videoElement.pause();</p>
+<p class="p1"><span class="Apple-converted-space">          </span>videoElement.src = "";</p>
+<p class="p1"><span class="Apple-converted-space">        </span>});</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>songListDiv.appendChild(itemDiv);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>});</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>/*****************************************************</p>
+<p class="p1"><span class="Apple-converted-space">     </span>* <span class="Apple-converted-space">  </span>ON DOCUMENT LOAD</p>
+<p class="p1"><span class="Apple-converted-space">     </span>*****************************************************/</p>
+<p class="p1"><span class="Apple-converted-space">    </span>document.addEventListener("DOMContentLoaded", () =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>// Grab DOM elements</p>
+<p class="p1"><span class="Apple-converted-space">      </span>audioElement = document.getElementById("audioElement");</p>
+<p class="p1"><span class="Apple-converted-space">      </span>videoElement = document.getElementById("videoElement");</p>
+<p class="p1"><span class="Apple-converted-space">      </span>progressBar = document.getElementById("progressBar");</p>
+<p class="p1"><span class="Apple-converted-space">      </span>currentCover = document.getElementById("currentCover");</p>
+<p class="p1"><span class="Apple-converted-space">      </span>currentTimeDisplay = document.getElementById("currentTime");</p>
+<p class="p1"><span class="Apple-converted-space">      </span>durationDisplay = document.getElementById("duration");</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">      </span>// Buttons</p>
+<p class="p1"><span class="Apple-converted-space">      </span>playPauseBtn = document.getElementById("playPauseBtn");</p>
+<p class="p1"><span class="Apple-converted-space">      </span>shuffleBtn = document.getElementById("shuffleBtn");</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">      </span>// Build the song list</p>
+<p class="p1"><span class="Apple-converted-space">      </span>buildSongList();</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">      </span>// Set up control listeners</p>
+<p class="p1"><span class="Apple-converted-space">      </span>playPauseBtn.addEventListener("click", togglePlayPause);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>document.getElementById("nextBtn").addEventListener("click", nextTrack);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>document.getElementById("prevBtn").addEventListener("click", prevTrack);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>shuffleBtn.addEventListener("click", toggleShuffle);</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">      </span>// Audio events for progress, ended, and tracking play/pause state</p>
+<p class="p1"><span class="Apple-converted-space">      </span>audioElement.addEventListener("timeupdate", updateProgress);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>audioElement.addEventListener("ended", nextTrack);</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">      </span>// Keep the play/pause button in sync with actual audio state</p>
+<p class="p1"><span class="Apple-converted-space">      </span>audioElement.addEventListener("play", () =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>isPlaying = true;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>playPauseBtn.textContent = "⏸"; // pause symbol</p>
+<p class="p1"><span class="Apple-converted-space">      </span>});</p>
+<p class="p1"><span class="Apple-converted-space">      </span>audioElement.addEventListener("pause", () =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>isPlaying = false;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>playPauseBtn.textContent = "▶"; // play symbol</p>
+<p class="p1"><span class="Apple-converted-space">      </span>});</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">      </span>// Clicking on the progress bar</p>
+<p class="p1"><span class="Apple-converted-space">      </span>progressBar.addEventListener("input", seekAudio);</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">      </span>// Load the first track's data (but do NOT attempt to autoplay)</p>
+<p class="p1"><span class="Apple-converted-space">      </span>loadTrack(0);</p>
+<p class="p1"><span class="Apple-converted-space">    </span>});</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;/script&gt;</p>
+<p class="p1">&lt;/body&gt;</p>
+<p class="p1">&lt;/html&gt;</p>
+</body>
+</html>
